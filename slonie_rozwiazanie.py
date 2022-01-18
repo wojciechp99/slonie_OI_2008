@@ -1,3 +1,6 @@
+import sys
+
+
 def get_values(file_name):
     try:
         with open(file_name) as file:
@@ -10,8 +13,7 @@ def get_values(file_name):
 
         return elephants(number_of_elephants, weights, original, swap_to)
     except:
-        return """Wrong file name, try something like: 
-C:/Users/username/Desktop/slo1.in or slo1.in if file is in the same directory"""
+        return None
 
 
 def elephants(number, weight, original, swapped_list):
@@ -41,14 +43,16 @@ def elephants(number, weight, original, swapped_list):
 
             answer += min(sum_of_weight + (length_of_cycle - 2) * minimum_value,
                           sum_of_weight + minimum_value + (length_of_cycle + 1) * minimum_weight)
+    print(answer)
     return answer
 
 
 if __name__ == "__main__":
-    # import sys
-    # argument_from_terminal = sys.argv[1]  # takes argument from terminal example: python slonie_rozwiazanie.py slo1.in
-    # total_mass_of_swapped_elephants = get_values(argument_from_terminal)
-
-    argument = input("Write file path: ")  # takes argument from input example: slo1.in
-    total_mass_of_swapped_elephants = get_values(argument)
-    print(total_mass_of_swapped_elephants)
+    try:
+        # takes argument from terminal example: python slonie_rozwiazanie.py slo1.in
+        argument_from_terminal = sys.argv[1]
+        total_mass_of_swapped_elephants = get_values(argument_from_terminal)
+    except:
+        # takes argument from input example: slo1.in
+        argument = input()
+        total_mass_of_swapped_elephants = get_values(argument)
